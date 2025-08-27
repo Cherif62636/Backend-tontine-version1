@@ -68,7 +68,6 @@ const updateUser = async(req, res) => {
         user.nom = req.body.nom;
         user.telephone = req.body.telephone;
         user.role = req.body.role;
-        user.langue = req.body.langue;
         user.pin = req.body.pin;
         user.save();
         return res.status(200).json({message: "Utilisateur modifié avec succès", data: user});

@@ -28,8 +28,6 @@ const validatorInscriptions = Joi.object({
         "number.base":"L'ID user doit être un nombre",
         "number.integer":"L'id doit être in entier",
         "any.required":"L'id est requis",
-
-
     })
    
 });

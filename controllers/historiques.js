@@ -2,32 +2,32 @@ const {Historique}=require('../models')
 const validatorInscriptions=require('../validators/historiques')
 
 
-const addHistorique=async(req , res )=>{
-    try {
-        const data=req.body
-        await validatorInscriptions.validateAsync(req.body)
+// const addHistorique=async(req , res )=>{
+//     try {
+//         const data=req.body
+//         await validatorInscriptions.validateAsync(req.body)
 
-    const historique=await Historique.create(data)
-    if(!historique)
-    {
+//     const historique=await Historique.create(data)
+//     if(!historique)
+//     {
 
-        return res.status(400).json({message:"Erreur survenu lors de l'enregistrement de l'historique"})
-    }
-    return res.status(201).json({message:"Enregistrement effectué avec succès"})
+//         return res.status(400).json({message:"Erreur survenu lors de l'enregistrement de l'historique"})
+//     }
+//     return res.status(201).json({message:"Enregistrement effectué avec succès"})
 
-    } catch (error) {
-        if(error.isJoi)
-        {
-            return res.status(400).json({
-                message:error.details[0].message
-            })
-        }
+//     } catch (error) {
+//         if(error.isJoi)
+//         {
+//             return res.status(400).json({
+//                 message:error.details[0].message
+//             })
+//         }
 
-        console.log("Erreur",error)
-        res.status(500).json({message:"Erreur du serveur"})
+//         console.log("Erreur",error)
+//         res.status(500).json({message:"Erreur du serveur"})
         
-    }
-}
+//     }
+// }
 
 const displayAllHistorique=async( req, res)=>{
     try {
@@ -42,4 +42,4 @@ const displayAllHistorique=async( req, res)=>{
 
 
 
-module.exports={addHistorique,displayAllHistorique}
+module.exports={displayAllHistorique}

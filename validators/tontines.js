@@ -23,12 +23,17 @@ const tontineValidator = Joi.object({
     }),
 
   frequence: Joi.string()
-    .valid('journalier', 'hebdomadaire', 'mensuel')
-    .required()
-    .optional()
+    .valid('journalier' , 'hebdomadaire', 'mensuel', 'annuel', 'autres')
     .default('mensuel')
     .messages({
       "any.only": "La fréquence doit être 'journalier', 'hebdomadaire' ou 'mensuel'",
+      "string.empty": "La fréquence ne peut pas être vide",
+    }),
+
+  date_fin: Joi.date()
+    .required()
+    .messages({
+      "any.only": "La date fin d'une tontine doit etre valide",
       "string.empty": "La fréquence ne peut pas être vide",
       "any.required": "La fréquence est obligatoire"
     }),
@@ -37,7 +42,7 @@ const tontineValidator = Joi.object({
     .valid('actif', 'inactif')
     .optional()
     // .required()
-    .default('actif')
+    .default('inactif')
     .messages({
       "any.only": "L’état doit être actif ou inactif",
       "string.empty": "L’état ne peut pas être vide",

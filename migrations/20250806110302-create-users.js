@@ -24,12 +24,8 @@ module.exports = {
       },
       role: {
         allowNull: false,
-        type: Sequelize.ENUM('admin' , 'membre'),
-        defaultValue: 'membre'
-      },
-      langue: {
-        allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.ENUM('admin' , 'simple'),
+        defaultValue: 'simple'
       },
       photoProlil: {
         type: Sequelize.STRING

@@ -13,16 +13,9 @@ const validatorUsers = Joi.object({
         "string.empty" : "le telephone ne doit pas etre vide",
         "string.min" : "le telephone doit comporter minimum 9 caracteres"
     }),
-    role: Joi.string().valid('admin' , 'membre').optional().required().messages({
+    role: Joi.string().valid('admin' , 'simple').default('simple').messages({
         "string.base" : "le role doit etre une chaine",
-        "any.required" : "le role est requis",
-        "any.only" : "le rôle doit être soit admin ou membre",
-    }),
-    langue: Joi.string().required().messages({
-        "string.base" : "la langue doit etre une chaine",
-        "any.required" : "la langue est requis",
-        "string.empty" : "la langue ne doit pas etre vide",
-        "string.min" : "la langue doit comporter minimum 3 caracteres"
+        "any.only" : "le rôle doit être soit admin ou simple",
     }),
     pin: Joi.string().required().messages({
         "string.base" : "le mot de passe doit etre une chaine",

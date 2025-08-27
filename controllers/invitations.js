@@ -104,15 +104,13 @@ const acceptInvitation = async (req, res) => {
             return res.status(404).json({ message: "Invitation déjà acceptée !" });
         }
 
-        
-        const user = await Users.findOne({ where: { telephone: invitation.telephone_invite } });
-        if (user) {
-            await MembresTontines.findOrCreate({
-                where: { id_user: user.id_user, id_tontine: invitation.id_tontine },
-                defaults: { ordre_tour: 1, date_adhesion: new Date() }
-            });
-        }
-        
+        await MembresTontines.create({
+            id_user: invitation.id_user, 
+            id_tontine: invitation.id_tontine,
+            ordre_tour: 1, 
+            date_adhesion: new Date()
+        });
+
         await Historique.create({
             id_user: invitation.id_user,
             type_action: "Invitation_acceptée",
@@ -120,7 +118,7 @@ const acceptInvitation = async (req, res) => {
             montant: 0,
             date_action: new Date()
         })
-        
+
         invitation.statut = "accepter";
         await invitation.save();
         return res.status(200).json({ message: "invitation acceptée avec succès", invitation });
@@ -136,25 +134,6 @@ const acceptInvitation = async (req, res) => {
 
     }
 }
-
-// const acceptInvitation = async (req, res) => {
-//     try {
-//         const invitation = await Invitations.findByPk(req.params.id);
-//         if (!invitation) return res.status(404).json({ message: "Invitation introuvable" });
-
-//         await invitation.update({ statut: "accepter" });
-
-//         const user = await Users.findOne({ where: { telephone: invitation.telephone_invite } });
-//         if (user) {
-//             await MembresTontines.findOrCreate({
-//                 where: { id_user: user.id_user, id_tontine: invitation.id_tontine },
-//                 defaults: { nombre_parts: 1, date_adhesion: new Date() }
-//             });
-//         }
-//         res.json({ message: "Invitation acceptée" });
-//     } catch (e) { res.status(500).json({ error: e.message }); }
-// };
-
 
 const refuseInvitation = async (req, res) => {
     try {

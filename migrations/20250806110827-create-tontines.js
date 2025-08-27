@@ -19,7 +19,7 @@ module.exports = {
       },
       frequence: {
         allowNull: false,
-        type: Sequelize.ENUM('journalier' , 'hebdomadaire', 'mensuel'),
+        type: Sequelize.ENUM('journalier' , 'hebdomadaire', 'mensuel', 'annuel', 'autres'),
         defaultValue: 'journalier'
       },
       date_debut: {
@@ -27,10 +27,14 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
+      date_fin: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
       etat: {
         allowNull: false,
         type: Sequelize.ENUM('actif' , 'inactif'),
-        defaultValue: 'actif'
+        defaultValue: 'inactif'
       },
       leader_id: {
         allowNull: false,

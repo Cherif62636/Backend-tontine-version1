@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     nom: DataTypes.STRING,
     monmontant_part: DataTypes.INTEGER,
     frequence: {
-      type: DataTypes.ENUM('journalier' , 'hebdomadaire', 'mensuel'), 
+      type: DataTypes.ENUM('journalier' , 'hebdomadaire', 'mensuel', 'annuel', 'autres'), 
       allowNull: false,
       defaultValue: "journalier"
     },
@@ -40,10 +40,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: DataTypes.NOW 
     },
+    date_fin: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
     etat: {
       type: DataTypes.ENUM('actiif' , 'inactif'), 
       allowNull: false,
-      defaultValue: "actif"
+      defaultValue: "inactif"
     },
     leader_id: DataTypes.INTEGER
   }, {

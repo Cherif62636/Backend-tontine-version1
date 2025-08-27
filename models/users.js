@@ -27,11 +27,10 @@ module.exports = (sequelize, DataTypes) => {
     telephone: DataTypes.STRING,
     pin: DataTypes.STRING,
     role: {
-      type: DataTypes.ENUM("admin", "membre"), // ✅ Correction ici
+      type: DataTypes.ENUM("admin", "simple"), // ✅ Correction ici
       allowNull: false,
-      defaultValue: "membre"
+      defaultValue: "simple"
     },
-    langue: DataTypes.STRING,
     photoProlil: DataTypes.STRING // (petite faute ici : "photoProfil" peut-être ?)
   }, {
     sequelize,
